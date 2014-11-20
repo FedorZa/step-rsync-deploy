@@ -1,5 +1,7 @@
 #!/bin/sh
 set -e
+WERCKER_RSYNC_DEPLOY_SSHKEY="private.key"
+echo $WERCKER_RSYNC_DEPLOY_PRIVATE_KEY > $WERCKER_RSYNC_DEPLOY_SSHKEY
 
 # host option
 if [ -z "$WERCKER_RSYNC_DEPLOY_HOST" ]
