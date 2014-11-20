@@ -54,7 +54,7 @@ info "ls -la $WERCKER_RSYNC_DEPLOY_SSHKEY"
 ls=$(ls -la $WERCKER_RSYNC_DEPLOY_SSHKEY)
 info $ls
 
-sync_output=($rsync -urltv --delete --rsh="$rsync_command" "$source_dir" "$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY")
+sync_output=($rsync -urltv --rsh="$rsync_command" "$source_dir" "$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY")
 if [[ $? -ne 0 ]];then
     warning $sync_output
     fail 'rsync failed';
