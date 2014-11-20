@@ -14,7 +14,7 @@ then
 fi
 
 # user option
-remote_user="root"
+remote_user="ubuntu"
 if [ -n "$WERCKER_RSYNC_DEPLOY_USER" ]; # Check $WERCKER_BUNDLE_INSTALL exists and is not empty
 then
     remote_user="$WERCKER_RSYNC_DEPLOY_USER"
@@ -34,7 +34,6 @@ rsync_command="ssh -o BatchMode=yes -p $remote_port" # Batchmode to prevent it f
 if [ -n "$WERCKER_RSYNC_DEPLOY_SSHKEY" ]
 then
     rsync_command="$rsync_command -i $WERCKER_RSYNC_DEPLOY_SSHKEY"
-
 fi
 
 source_dir="./"
@@ -44,19 +43,9 @@ then
 fi
 
 info "Synchronizing $source_dir to $remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY..."
-info "rsync -urltv --delete --rsh=$rsync_command $source_dir $remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY"
-
-info "ls -la $source_dir"
-ls=$(ls -la $source_dir)
-info $ls
-
-info "ls -la $WERCKER_RSYNC_DEPLOY_SSHKEY"
-ls=$(ls -la $WERCKER_RSYNC_DEPLOY_SSHKEY)
-info $ls
-
-sync_output=($rsync -urltv --rsh="$rsync_command" "$source_dir" "$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY")
-info $sync_output
+sync_output=$(rsync -urltv --rsh="$rsync_command" "$source_dir" "$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY")
 if [[ $? -ne 0 ]];then
+    warning $sync_output
     fail 'rsync failed';
 else
     success "finished rsync synchronisation"
