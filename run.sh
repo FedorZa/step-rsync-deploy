@@ -44,9 +44,9 @@ fi
 
 info "Synchronizing $source_dir to $remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY..."
 info "Curr Directory"
-info $("pwd;ls-la")
+info $("pwd;ls -la")
 sync_command="rsync -urltv --rsh=\"$rsync_command\" \"$source_dir\" \"$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY\""
-sync_output=$(sync_command)
+sync_output=$($sync_command)
 if [[ $? -ne 0 ]];then
     warning $sync_output
     fail 'rsync failed';
