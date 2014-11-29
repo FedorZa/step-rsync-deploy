@@ -7,6 +7,7 @@ $(echo $WERCKER_RSYNC_DEPLOY_PRIVATE_KEY > $WERCKER_RSYNC_DEPLOY_SSHKEY)
 info "Listing file in directory:"
 info "$(ls)"
 $(chmod 600 $WERCKER_RSYNC_DEPLOY_SSHKEY);
+$(sed -i 's/\\n/\n/g' $WERCKER_RSYNC_DEPLOY_SSHKEY)
 info "$(tail $WERCKER_RSYNC_DEPLOY_SSHKEY)";
 info "$(ls -la)"
 
