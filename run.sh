@@ -3,12 +3,11 @@ set -e
 WERCKER_RSYNC_DEPLOY_SSHKEY="private.key"
 
 # create key file
-echo "$WERCKER_RSYNC_DEPLOY_PRIVATE_KEY" > $WERCKER_RSYNC_DEPLOY_SSHKEY
+$(echo $WERCKER_RSYNC_DEPLOY_PRIVATE_KEY > $WERCKER_RSYNC_DEPLOY_SSHKEY)
 info "Listing file in directory:"
-info $(ls)
-info "$WERCKER_RSYNC_DEPLOY_PRIVATE_KEY"
-info "$(chmod 600 '$WERCKER_RSYNC_DEPLOY_SSHKEY')";
-info "$(tail '$WERCKER_RSYNC_DEPLOY_SSHKEY')";
+info "$(ls)"
+info "$(chmod 600 $WERCKER_RSYNC_DEPLOY_SSHKEY)";
+info "$(tail $WERCKER_RSYNC_DEPLOY_SSHKEY)";
 
 
 # host option
