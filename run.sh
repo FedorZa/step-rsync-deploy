@@ -6,8 +6,9 @@ WERCKER_RSYNC_DEPLOY_SSHKEY="private.key"
 $(echo $WERCKER_RSYNC_DEPLOY_PRIVATE_KEY > $WERCKER_RSYNC_DEPLOY_SSHKEY)
 info "Listing file in directory:"
 info "$(ls)"
-info "$(chmod 600 $WERCKER_RSYNC_DEPLOY_SSHKEY)";
+$(chmod 600 $WERCKER_RSYNC_DEPLOY_SSHKEY);
 info "$(tail $WERCKER_RSYNC_DEPLOY_SSHKEY)";
+info "$(ls -la)"
 
 
 # host option
