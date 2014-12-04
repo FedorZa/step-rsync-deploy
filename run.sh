@@ -1,14 +1,11 @@
 #!/bin/sh
 set -e
 WERCKER_RSYNC_DEPLOY_SSHKEY="private.key"
+WERCKER_RSYNC_DEPLOY_SSHKEY=$WERCKER_SOURCE_DIR/$WERCKER_RSYNC_DEPLOY_SSHKEY
 
 # create key file
-$(echo "$WERCKER_RSYNC_DEPLOY_PRIVATE_KEY" > $WERCKER_RSYNC_DEPLOY_SSHKEY)
-info "Listing file in directory:"
-info "$(ls)"
-$(chmod 600 $WERCKER_RSYNC_DEPLOY_SSHKEY);
-info "$(tail $WERCKER_RSYNC_DEPLOY_SSHKEY)";
-info "$(ls -la)"
+$(echo $WERCKER_RSYNC_DEPLOY_PRIVATE_KEY > $WERCKER_RSYNC_DEPLOY_SSHKEY)
+$(sed -i 's/\\n/\n/g' $WERCKER_RSYNC_DEPLOY_SSHKEY)
 
 
 # host option
@@ -52,8 +49,22 @@ then
     source_dir=$WERCKER_RSYNC_DEPLOY_SOURCE
 fi
 
+info "Current Directory:"
+info $("pwd")
+
+info "Listing file in directory:"
+info $("ls")
+
+info "Change key permission:"
+info $(chmod 600 "$WERCKER_RSYNC_DEPLOY_SSHKEY");
+info $(tail "$WERCKER_RSYNC_DEPLOY_SSHKEY");
+
+info "Change file permission:"
+
 info "Synchronizing $source_dir to $remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY..."
-sync_command="rsync -urltv --rsh=\"$rsync_command\" \"$source_dir\" \"$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY\""
+
+info "=== Command ==="
+info "rsync -urltv --rsh=\"$rsync_command\" \"$source_dir\" \"$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY\""
 sync_output=$(rsync -urltv --rsh="$rsync_command" "$source_dir" "$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY")
 if [[ $? -ne 0 ]];then
     warning $sync_output
