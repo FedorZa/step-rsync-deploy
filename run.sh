@@ -52,7 +52,7 @@ info "Current Directory:"
 info "$(pwd)"
 
 info "Listing file in directory:"
-info "$(ls)"
+info "$(ls -la)"
 
 info "Change key permission:"
 $(chmod 600 "$WERCKER_RSYNC_DEPLOY_SSHKEY");

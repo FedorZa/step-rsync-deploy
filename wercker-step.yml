@@ -1,5 +1,5 @@
 name: rsync-deploy
-version: 0.1.26
+version: 0.1.27
 description: Secure, Fast Deploy your code to any server over ssh using Rsync
 keywords:
   - scp
