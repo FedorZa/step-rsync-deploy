@@ -63,7 +63,7 @@ info "Change file permission:"
 info "Synchronizing $source_dir to $remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY..."
 
 info "=== Command ==="
-info "rsync -urltv --rsh=\"$rsync_command\" \"$source_dir\" \"$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY\""
+info "rsync -avz --rsh=\"$rsync_command\" \"$source_dir\" \"$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY\""
 sync_output=$(rsync -avz --rsh="$rsync_command" "$source_dir" "$remote_user@$WERCKER_RSYNC_DEPLOY_HOST:$WERCKER_RSYNC_DEPLOY_DIRECTORY")
 if [[ $? -ne 0 ]];then
     warning "$sync_output"
