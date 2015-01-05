@@ -51,7 +51,7 @@ fi
 info "Current Directory:"
 info "$(pwd)"
 
-info "$WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY"
+info "set"
 
 info "Listing file in directory:"
 info "$(ls -la)"
