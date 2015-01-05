@@ -14,7 +14,7 @@ Deploy your code to any server over ssh using rsync. By default it will upload t
 
 # Example
 
-    - fedor/rsync-soft-deploy@0.1:
+    - fedor/rsync-soft-deploy@0.1.30:
         host: example.org
         directory: /var/www
         sshkey: $PRIVATEKEY_FILE
