@@ -63,7 +63,7 @@ if [[ $? -ne 0 ]];then
     warning "$sync_output"
     fail 'rsync failed';
 else
-	ssh -i $WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY $remote_user@$WERCKER_RSYNC_SOFT_DEPLOY_HOST chown -Rf www-data:www-data$WERCKER_RSYNC_SOFT_DEPLOY_DIRECTORY
-	info "chown performed!"
+	ssh -i $WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY $remote_user@$WERCKER_RSYNC_SOFT_DEPLOY_HOST chown -Rf $WERCKER_RSYNC_SOFT_DEPLOY_USER:$WERCKER_RSYNC_SOFT_DEPLOY_GROUP $WERCKER_RSYNC_SOFT_DEPLOY_DIRECTORY
+	info "chown performed! $WERCKER_RSYNC_SOFT_DEPLOY_USER:$WERCKER_RSYNC_SOFT_DEPLOY_GROUP"
     success "finished rsync synchronisation"
 fi

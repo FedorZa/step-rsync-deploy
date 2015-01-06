@@ -16,7 +16,7 @@ use Env variables for setup target path!
 
 # Example
 
-    - fedor/rsync-soft-deploy@0.1.39:
+    - fedor/rsync-soft-deploy@0.1.40:
         host: example.org
         directory: /var/www
         sshkey: $PRIVATEKEY_FILE
