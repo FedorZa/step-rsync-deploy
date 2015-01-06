@@ -42,19 +42,11 @@ then
     source_dir=$WERCKER_RSYNC_SOFT_DEPLOY_SOURCE
 fi
 
-info "Current Directory:"
-info "$(pwd)"
-
-info "Listing file in directory:"
-info "$(ls -la)"
 
 info "Change key permission:"
 $(chmod 600 "$WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY");
 # info "$(tail "$WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY")";
 
-info "Change file permission:"
-
-info "Synchronizing $source_dir to $remote_user@$WERCKER_RSYNC_SOFT_DEPLOY_HOST:$WERCKER_RSYNC_SOFT_DEPLOY_DIRECTORY..."
 
 info "=== Command ==="
 info "rsync -avz --rsh=\"$rsync_command\" \"$source_dir\" \"$remote_user@$WERCKER_RSYNC_SOFT_DEPLOY_HOST:$WERCKER_RSYNC_SOFT_DEPLOY_DIRECTORY\""

@@ -12,12 +12,10 @@ use Env variables for setup target path!
 * `user` (optional) the username used for the connection, default is `ubuntu`
 * `sshport` (optional) the port that ssh uses for the connection, default is `22`
 * `source` (optional) specify which source directory to upload, default is `./`
-* `group` (optional) specify which group should be applied via chown user:
 
 # Example
 
-    - fedor/rsync-soft-deploy@0.1.41:
+    - fedor/rsync-soft-deploy@0.1.43:
         host: example.org
         directory: /var/www
         sshkey: $PRIVATEKEY_FILE
-		group: www-data
