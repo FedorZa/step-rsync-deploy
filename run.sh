@@ -50,7 +50,7 @@ info "$(ls -la)"
 
 info "Change key permission:"
 $(chmod 600 "$WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY");
-info "$(tail "$WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY")";
+# info "$(tail "$WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY")";
 
 info "Change file permission:"
 
@@ -63,7 +63,7 @@ if [[ $? -ne 0 ]];then
     warning "$sync_output"
     fail 'rsync failed';
 else
-	ssh -i $WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY $remote_user@$WERCKER_RSYNC_SOFT_DEPLOY_HOST ls -al $WERCKER_RSYNC_SOFT_DEPLOY_DIRECTORY
+	ssh -i $WERCKER_RSYNC_SOFT_DEPLOY_SSHKEY $remote_user@$WERCKER_RSYNC_SOFT_DEPLOY_HOST chown -Rf www-data:www-data$WERCKER_RSYNC_SOFT_DEPLOY_DIRECTORY
 	info "chown performed!"
     success "finished rsync synchronisation"
 fi
