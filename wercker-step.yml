@@ -1,5 +1,5 @@
 name: rsync-soft-deploy
-version: 0.1.43
+version: 0.1.44
 description: Secure, Fast Deploy your code to any server over ssh using Rsync (withour deleting files on destination server)
 keywords:
   - scp
